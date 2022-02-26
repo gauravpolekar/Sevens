@@ -19,7 +19,7 @@ public class SevenRestController {
 	@Autowired
 	private SevenService sevenService;
 
-	@GetMapping("/")
+	@GetMapping("/deck")
 	public GameDeck showDeck() {
 		return sevenService.showDeck();
 	}

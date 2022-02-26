@@ -7,7 +7,7 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    const response = await fetch('http://localhost:8080');
+    const response = await fetch('http://localhost:8080/seven/deck');
     try {
         const body = await response.json();
         console.log(body);
