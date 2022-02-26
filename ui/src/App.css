@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+
+.playing-card{
+     float: left;
+     font-size:50px;
+}

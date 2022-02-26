@@ -25,10 +25,11 @@ class App extends Component {
             <div className="App-intro">
               <h2>Cards</h2>
               {cards.map(card =>
-                  <div key={card.face}>
+                  <div class="playing-card">
                     {card.unicode}
                   </div>
               )}
+
             </div>
           </header>
         </div>
