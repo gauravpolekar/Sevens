@@ -1,5 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { Component } from 'react';
 
 class App extends Component {
   state = {
@@ -7,9 +7,14 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    const response = await fetch('/');
-    const body = await response.json();
-    this.setState({cards: body});
+    const response = await fetch('http://localhost:8080');
+    try {
+        const body = await response.json();
+        console.log(body);
+        this.setState({cards: body.cards});
+    } catch(error) {
+        console.error(error)
+    }
   }
 
   render() {
@@ -17,12 +22,11 @@ class App extends Component {
     return (
         <div className="App">
           <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
             <div className="App-intro">
-              <h2>Clients</h2>
-              {clients.map(client =>
-                  <div key={client.id}>
-                    {client.name} ({client.email})
+              <h2>Cards</h2>
+              {cards.map(card =>
+                  <div key={card.face}>
+                    {card.unicode}
                   </div>
               )}
             </div>
