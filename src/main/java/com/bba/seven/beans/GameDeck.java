@@ -5,9 +5,14 @@ import java.util.List;
 
 public class GameDeck {
 
+	private List<Card> deck;
 	public List<Card> getCards() {
-		List<Card> deck = Deck.getDeck().getCards();
-		Collections.shuffle(deck);
+		deck = Deck.getDeck().getCards();
+		shuffle();
 		return deck;
+	}
+
+	public void shuffle() {
+		Collections.shuffle(deck);
 	}
 }

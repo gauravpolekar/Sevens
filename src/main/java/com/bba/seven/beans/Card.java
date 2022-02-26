@@ -1,5 +1,6 @@
 package com.bba.seven.beans;
 
+import com.bba.seven.enums.Face;
 import com.bba.seven.enums.Suit;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Card {
-	private String face;
+	private Face face;
 	private String unicode;
 	private Suit suit;
 }
