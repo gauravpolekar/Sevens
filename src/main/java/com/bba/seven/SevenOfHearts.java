@@ -34,7 +34,7 @@ public class SevenOfHearts implements Game {
 		players = new ArrayList<>();
 		cardsOnTable = new HashMap<>();
 		status = GameStatus.READY_TO_START;
-		gameName = SevenOfHearts.class.getName() + UUID.randomUUID();
+		gameName = SevenOfHearts.class.getSimpleName() + UUID.randomUUID();
 	}
 
 	@Override
@@ -82,8 +82,8 @@ public class SevenOfHearts implements Game {
 	public void startGame() {
 		if (GameStatus.READY_TO_START.equals(status) && !CollectionUtils.isEmpty(players)) {
 			status = GameStatus.STARTED;
-			initializeCurrentPlayer();
 			distributeCards();
+			initializeCurrentPlayer();
 		} else {
 			//TODO can not start game
 		}
