@@ -12,6 +12,7 @@ public class Deck {
 
 	private static List<Card> cards;
 
+	public static Card SEVEN_OF_HEART = null;
 	private Deck() {
 		initializeDeck();
 	}
@@ -53,7 +54,8 @@ public class Deck {
 		cards.add(new Card(Face.FOUR, "\uD83C\uDCB4", Suit.HEART));
 		cards.add(new Card(Face.FIVE, "\uD83C\uDCB5", Suit.HEART));
 		cards.add(new Card(Face.SIX, "\uD83C\uDCB6", Suit.HEART));
-		cards.add(new Card(Face.SEVEN, "\uD83C\uDCB7", Suit.HEART));
+		SEVEN_OF_HEART = new Card(Face.SEVEN, "\uD83C\uDCB7", Suit.HEART);
+		cards.add(SEVEN_OF_HEART);
 		cards.add(new Card(Face.EIGHT, "\uD83C\uDCB8", Suit.HEART));
 		cards.add(new Card(Face.NINE, "\uD83C\uDCB9", Suit.HEART));
 		cards.add(new Card(Face.TEN, "\uD83C\uDCBA", Suit.HEART));

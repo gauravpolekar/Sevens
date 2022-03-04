@@ -52,9 +52,22 @@
       <recent name="com.bba.seven" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.SevenApplication">
     <configuration name="SevenApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.bba.seven.SevenApplication" />
+      <module name="seven" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bba.seven.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestClass" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.bba.seven.TestClass" />
       <module name="seven" />
       <extension name="coverage">
         <pattern>
@@ -69,6 +82,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.SevenApplication" />
+        <item itemvalue="Application.TestClass" />
       </list>
     </recent_temporary>
   </component>
@@ -88,18 +102,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/bba/seven/SevenOfHearts.java</url>
-          <line>85</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/bba/seven/SevenOfHearts.java</url>
-          <line>102</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/bba/seven/SevenOfHearts.java</url>
-          <line>70</line>
-          <option name="timeStamp" value="20" />
+          <line>109</line>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

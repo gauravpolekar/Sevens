@@ -1,6 +1,7 @@
 package com.bba.seven;
 
 import com.bba.seven.beans.Card;
+import com.bba.seven.beans.Deck;
 import com.bba.seven.beans.Game;
 import com.bba.seven.beans.GameDeck;
 import com.bba.seven.beans.Player;
@@ -55,7 +56,9 @@ public class SevenOfHearts implements Game {
 	@Override
 	public void addPlayerToGame(Player player) {
 		if (GameStatus.READY_TO_START.equals(status)) {
-			players.add(player);
+			if (!players.contains(player)) {
+				players.add(player);
+			}
 		} else {
 			//TODO game already started
 		}
@@ -69,7 +72,9 @@ public class SevenOfHearts implements Game {
 	@Override
 	public void setCurrentTurn(Player player) {
 		if (player != null) {
+			players.stream().forEach(p-> p.setCurrentPlayer(false));
 			this.currentTurn = player;
+			player.setCurrentPlayer(true);
 		}
 	}
 
@@ -100,9 +105,9 @@ public class SevenOfHearts implements Game {
 	}
 
 	private void initializeCurrentPlayer() {
-        setCurrentTurn(players.stream().filter(player -> player.getCards().stream().anyMatch(
-				card -> Face.SEVEN.equals(card.getFace())
-						&& Suit.HEART.equals(card.getSuit()))).findAny().get());
+		Player p = players.stream().filter(player -> player.getCards().contains(Deck.SEVEN_OF_HEART))
+				.findAny().get();
+        setCurrentTurn(p);
 	}
 
 

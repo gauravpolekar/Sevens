@@ -28,7 +28,12 @@ class Home extends Component {
 
   addPlayer = (e) => {
     e.preventDefault();
-    let p = { name: e.target.playerName.value };
+    let p = {};
+    try {
+    p = { name: e.target.playerName.value };
+    } catch(error) {
+      p = { name: localStorage.getItem('player')};
+    }
     this.setState(p, () => {
       let url = `http://localhost:8080/seven/player/add/` + this.state.gameId;
 
@@ -45,9 +50,14 @@ class Home extends Component {
     );
 
     console.log(this.state);
+    try {
     localStorage.setItem('player', e.target.playerName.value);
+    } catch(error) {
+      //do nothing
+    }
   });
 }
+
 
   render() {
     if (Object.keys(this.state.player).length === 0 || this.state.player.name == null || this.state.player.name == 'null') {
@@ -62,8 +72,12 @@ class Home extends Component {
       );
     } else {
       return (
-        <div className="App"><p>Player name: {this.state.player.name} </p>
-          <p>Game Id: {this.state.gameId} </p>
+        <div className="App">
+        
+          <p>Player name: {this.state.player.name} </p>
+          <form onSubmit={this.addPlayer}>
+            <button type='submit'>Play</button>
+          </form>
         </div>
       );
     }

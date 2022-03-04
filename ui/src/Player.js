@@ -20,9 +20,9 @@ class Player extends Component {
       const body = await response.json();
       console.log(body);
       this.setState({ players: body.players });
-      if (body.status == "STARTED") {
-        clearInterval(this.interval);    
-      }
+      // if (body.status === "STARTED") {
+      //   clearInterval(this.interval);    
+      // }
     } catch (error) {
       console.error(error)
     }
@@ -36,13 +36,14 @@ class Player extends Component {
       return (<></>);
     }
     return (
-      <div className="App">
-        {this.state.players.map(player =>
-          <div class="card">
-            {player.name}
-          </div>
-        )}
-
+     <div class="card">
+        <ul class="list-group list-group-flush">
+          {this.state.players.map(player =>
+          <li class="list-group-item">
+            {player.name} { player.currentPlayer ? "RED": "BLACK"}
+          </li>
+          )}
+        </ul>
       </div>
     );
   }
