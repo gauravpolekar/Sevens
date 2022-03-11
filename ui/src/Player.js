@@ -40,7 +40,7 @@ class Player extends Component {
         <ul class="list-group list-group-flush">
           {this.state.players.map(player =>
           <li class="list-group-item">
-            {player.name} { player.currentPlayer ? "RED": "BLACK"}
+            {player.name} { player.currentPlayer ? "<-": ""}
           </li>
           )}
         </ul>

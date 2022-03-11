@@ -12,9 +12,10 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -28,7 +29,7 @@ public class SevenOfHearts implements Game {
 	private Player currentTurn;
 	private GameStatus status;
 
-	private Map<Suit, List<Face>> cardsOnTable;
+	private Map<Suit, Set<Card>> cardsOnTable;
 
 	public SevenOfHearts() {
 		deck = new GameDeck();
@@ -114,23 +115,30 @@ public class SevenOfHearts implements Game {
 	@Override
 	public void playCurrentTurn(Player player, Card card) {
 		//Game logic
-
-		if (player.getCards().contains(card)) {
-			if (isValidCardToPlay(card)) {
-				addCardToTable(card);
-				nextTurn();
+		if (currentTurn().equals(player)) {
+			if (currentTurn().getCards().contains(card)) {
+				if (isValidCardToPlay(card)) {
+					addCardToTable(card);
+					nextTurn();
+				}
 			}
 		}
 	}
 
 	private void addCardToTable(Card card) {
-		List<Face> faces = cardsOnTable.getOrDefault(card.getSuit(), new ArrayList<>());
-		faces.add(card.getFace());
+		Set<Card> faces = cardsOnTable.getOrDefault(card.getSuit(), new HashSet<>());
+		faces.add(card);
 		cardsOnTable.put(card.getSuit(), faces);
+		currentTurn().getCards().remove(card);
 	}
 
 	private boolean isValidCardToPlay(Card card) {
 		//Evaluate Game rules
-		return false;
+		return true;
+	}
+
+	@Override
+	public Map<Suit, Set<Card>> getCardOnTable() {
+		return cardsOnTable;
 	}
 }

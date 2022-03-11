@@ -6,9 +6,12 @@ import java.util.List;
 public class GameDeck {
 
 	private List<Card> deck;
-	public List<Card> getCards() {
+
+	public GameDeck() {
 		deck = Deck.getDeck().getCards();
 		shuffle();
+	}
+	public List<Card> getCards() {
 		return deck;
 	}
 

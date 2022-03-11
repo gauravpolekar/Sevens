@@ -5,24 +5,22 @@ class CardOnTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      players: []
+      cards: {}
     };
   }
 
   async componentDidMount() {
-    this.interval = setInterval(() => this.getPlayers(), 5000);
+    this.interval = setInterval(() => this.getCardsOnTable(), 5000);
   }
 
-  async getPlayers() {
+  async getCardsOnTable() {
     console.log(localStorage.getItem('gameId'));
-    const response = await fetch('http://localhost:8080/seven/' + localStorage.getItem('gameId'));
+    const response = await fetch('http://localhost:8080/seven/table/' + localStorage.getItem('gameId'));
     try {
       const body = await response.json();
       console.log(body);
-      this.setState({ players: body.players });
-      if (body.status == "STARTED") {
-        clearInterval(this.interval);    
-      }
+      this.setState({ cards: body });
+      
     } catch (error) {
       console.error(error)
     }
@@ -32,17 +30,28 @@ class CardOnTable extends Component {
     clearInterval(this.interval);
   }
   render() {
-    if (this.state.players === undefined || this.state.players.length === 0) {
-      return (<></>);
+    if (this.state.cards === undefined || this.state.cards === 0) {
+      return (<>🂠</>);
     }
     return (
       <div className="App">
-        {this.state.players.map(player =>
-          <div class="card">
-            {player.name}
-          </div>
-        )}
-
+        <div>
+          {
+            Object.keys(this.state.cards).map((card) => {
+              return (
+                <div> {this.state.cards[card].map(c =>
+                  <div className={"playing-card " + card} key={c.face}>
+                    {c.unicode}
+                  </div>
+                )
+                
+                }<hr/><br/><br/>
+                </div>
+              );
+            }
+            )
+          }
+      </div>
       </div>
     );
   }

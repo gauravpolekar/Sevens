@@ -1,8 +1,12 @@
 package com.bba.seven.beans;
 
+import com.bba.seven.enums.Face;
 import com.bba.seven.enums.GameStatus;
+import com.bba.seven.enums.Suit;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public interface Game {
 	String name();
@@ -30,4 +34,6 @@ public interface Game {
 	}
 
 	void playCurrentTurn(Player player, Card card);
+
+	Map<Suit, Set<Card>> getCardOnTable();
 }

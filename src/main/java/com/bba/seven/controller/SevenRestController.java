@@ -5,6 +5,8 @@ import com.bba.seven.beans.Game;
 import com.bba.seven.beans.GameDeck;
 import com.bba.seven.beans.GameUIBean;
 import com.bba.seven.beans.Player;
+import com.bba.seven.enums.Face;
+import com.bba.seven.enums.Suit;
 import com.bba.seven.service.SevenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @RestController()
 @RequestMapping("/seven")
@@ -54,5 +58,15 @@ public class SevenRestController {
 	@GetMapping("/start/{gameId}")
 	public void startGame(@PathVariable("gameId") String gameId) {
 		sevenService.startGame(gameId);
+	}
+
+	@GetMapping("/table/{gameId}")
+	public Map<Suit, Set<Card>> cardsOnTable(@PathVariable("gameId") String gameId) {
+		return sevenService.getCardsOnTable(gameId);
+	}
+
+	@PostMapping("/playTurn/{gameId}")
+	public void playCurrentPlayerTurn(@PathVariable("gameId") String gameId, @RequestBody PlayTurn playTurn) {
+		sevenService.playCurrentTurn(gameId, playTurn.getPlayer(), playTurn.getCard());
 	}
 }

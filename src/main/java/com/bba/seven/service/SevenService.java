@@ -6,12 +6,15 @@ import com.bba.seven.beans.Game;
 import com.bba.seven.beans.GameDeck;
 import com.bba.seven.beans.GameUIBean;
 import com.bba.seven.beans.Player;
+import com.bba.seven.enums.Face;
+import com.bba.seven.enums.Suit;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Service
 public class SevenService {
@@ -52,5 +55,20 @@ public class SevenService {
 			return playerBean.getCards();
 		}
 		return  Collections.emptyList();
+	}
+
+	public Map<Suit, Set<Card>>  getCardsOnTable(String gameId) {
+		Game game = games.get(gameId);
+		if (game != null) {
+			return game.getCardOnTable();
+		}
+		return null;
+	}
+
+	public void playCurrentTurn(String gameId, Player player, Card card) {
+		Game game = games.get(gameId);
+		if (game != null) {
+			game.playCurrentTurn(player, card);
+		}
 	}
 }
