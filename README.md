@@ -1,2 +1,0 @@
-# Sevens
- Sevens card game
