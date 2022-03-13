@@ -14,7 +14,11 @@ import com.bba.seven.rules.Facts;
 import com.bba.seven.rules.Rule;
 import com.bba.seven.rules.RuleClass;
 import com.bba.seven.rules.RuleEngine;
+import com.bba.seven.rules.sevensrule.GreaterThanSeven;
+import com.bba.seven.rules.sevensrule.LessThanSeven;
 import com.bba.seven.rules.sevensrule.RuleConstants;
+import com.bba.seven.rules.sevensrule.SevenOfHeartRule;
+import com.bba.seven.rules.sevensrule.SevenRule;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.reflections.Reflections;
@@ -56,6 +60,13 @@ public class SevenOfHearts implements Game {
 		gameName = SevenOfHearts.class.getSimpleName() + UUID.randomUUID();
 		ruleEngine = new DefaultRuleEngine();
 		rules = getAllRules();
+		if (rules.isEmpty()) {
+			//Added temp for heroku
+			rules.add(new SevenOfHeartRule());
+			rules.add(new SevenRule());
+			rules.add(new LessThanSeven());
+			rules.add(new GreaterThanSeven());
+		}
 		facts = new Facts();
 		facts.put(RuleConstants.FACT_CARDS_ON_TABLE, cardsOnTable);
 	}
