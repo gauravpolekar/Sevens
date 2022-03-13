@@ -56,19 +56,31 @@ class Game extends Component {
   render() {
     const { cards } = this.state;
     return (
-      <div className="App">
-        <h2>Cards<button onClick={this.startGame}>Start</button></h2>
+      <div class="container">
+        <div class="row">
+          <div className='col-sm'>
+        <button onClick={this.startGame} className="btn-primary col-sm" >Start</button>
+        </div>
+        <div class="row">
         <Player />
+        </div>
+        <div class="row">
         <hr/>
-        <br/>
+        </div>
+        <div class="row">
         <CardOnTable/>
+        </div>
+        <div class="row">
         <hr/>
-        <br/>
+        </div>
+        <div class="d-flex">
         {cards.map(card =>
           <div className={"playing-card " + card.suit} onClick={() => this.play(card)}>
             {card.unicode}
           </div>
         )}
+        </div>
+      </div>
       </div>
     );
   }

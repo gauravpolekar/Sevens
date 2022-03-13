@@ -34,18 +34,19 @@ class CardOnTable extends Component {
       return (<>🂠</>);
     }
     return (
-      <div className="App">
+      <div className="container">
         <div>
           {
             Object.keys(this.state.cards).map((card) => {
               return (
-                <div> {this.state.cards[card].map(c =>
+                <div className='tableRow'> 
+                  {this.state.cards[card].map(c =>
                   <div className={"playing-card " + card} key={c.face}>
                     {c.unicode}
                   </div>
                 )
                 
-                }<hr/><br/><br/>
+                }<hr/>
                 </div>
               );
             }

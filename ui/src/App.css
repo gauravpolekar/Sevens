@@ -1,11 +1,11 @@
-.App {
- background-color:darkgreen;
-}
 
+.line-break {
+     width: 100%;
+}
 
 .playing-card{
      float: left;
-     font-size:50px;
+     font-size:100px;
 }
 .CLUB{
      color: black;
@@ -20,4 +20,11 @@
 
 .HEART{
      color: red;
+}
+
+
+.tableRow {
+     display: flex;
+     letter-spacing: -5px;
+     line-height: 100px;
 }

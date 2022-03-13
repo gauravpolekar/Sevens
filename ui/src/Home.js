@@ -62,13 +62,27 @@ class Home extends Component {
   render() {
     if (Object.keys(this.state.player).length === 0 || this.state.player.name == null || this.state.player.name == 'null') {
       return (
-        <div className="App">
-          <h2>Start Game</h2>
+        <div class="container">
+          <h4>Start Game</h4>
+          
+          
           <form onSubmit={this.addPlayer}>
-            <span>Player name :</span> <input name="playerName" />
-            <button type='submit'>Play</button>
+          <div class="row">
+          <div class="col-sm">
+            <label className="form-label">Player name :</label> 
+            </div>
+            <div class="col-sm">
+              <input className="form-control" name="playerName" />
+              </div>
+              <div class="col-sm">
+            <button type='submit' className="btn-primary col-sm">Play</button>
+            </div>
+            </div>
           </form>
-        </div>
+          
+          </div>
+          
+        
       );
     } else {
       return (

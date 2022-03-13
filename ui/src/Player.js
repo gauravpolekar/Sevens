@@ -36,6 +36,8 @@ class Player extends Component {
       return (<></>);
     }
     return (
+      <div class="container">
+        <div class="row">
      <div class="card">
         <ul class="list-group list-group-flush">
           {this.state.players.map(player =>
@@ -44,6 +46,8 @@ class Player extends Component {
           </li>
           )}
         </ul>
+      </div>
+      </div>
       </div>
     );
   }
