@@ -15,7 +15,7 @@ class CardOnTable extends Component {
 
   async getCardsOnTable() {
     console.log(localStorage.getItem('gameId'));
-    const response = await fetch('http://localhost:8080/seven/table/' + localStorage.getItem('gameId'));
+    const response = await fetch('https://sevenofheart.herokuapp.com/seven/table/' + localStorage.getItem('gameId'));
     try {
       const body = await response.json();
       console.log(body);

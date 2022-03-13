@@ -19,7 +19,7 @@ class Game extends Component {
   }
 
   startGame = () =>{
-    fetch('http://localhost:8080/seven/start/' + localStorage.getItem('gameId'))
+    fetch('https://sevenofheart.herokuapp.com/seven/start/' + localStorage.getItem('gameId'))
     .then(() => this.updateCards()
       );
   }
@@ -27,7 +27,7 @@ class Game extends Component {
     clearInterval(this.interval);
   }
   updateCards = () => {
-    fetch('http://localhost:8080/seven/' + localStorage.getItem('gameId')
+    fetch('https://sevenofheart.herokuapp.com/seven/' + localStorage.getItem('gameId')
     + "/" + localStorage.getItem('player') + "/cards"
   ).then(response => response.json().then((gameBody) =>{
     console.log(gameBody);
@@ -43,7 +43,7 @@ class Game extends Component {
     let p ={ player : {name : player},
             card : cardToPlay
             };
-    let url =`http://localhost:8080/seven/playTurn/` + gameId;
+    let url =`https://sevenofheart.herokuapp.com/seven/playTurn/` + gameId;
     try {
       fetch(url, {
         method: 'POST',

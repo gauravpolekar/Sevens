@@ -15,7 +15,7 @@ class Player extends Component {
 
   async getPlayers() {
     console.log(localStorage.getItem('gameId'));
-    const response = await fetch('http://localhost:8080/seven/' + localStorage.getItem('gameId'));
+    const response = await fetch('https://sevenofheart.herokuapp.com/seven/' + localStorage.getItem('gameId'));
     try {
       const body = await response.json();
       console.log(body);

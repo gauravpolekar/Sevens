@@ -13,7 +13,7 @@ class Home extends Component {
   async componentDidMount() {
     let id = this.props.match.params.id;
     if (id === undefined) {
-      const game = await (await fetch(`http://localhost:8080/seven/createGame`)).text();
+      const game = await (await fetch(`https://sevenofheart.herokuapp.com/seven/createGame`)).text();
       console.log(game)
       this.setState({ gameId: game });
       id = game;
@@ -35,7 +35,7 @@ class Home extends Component {
       p = { name: localStorage.getItem('player')};
     }
     this.setState(p, () => {
-      let url = `http://localhost:8080/seven/player/add/` + this.state.gameId;
+      let url = `https://sevenofheart.herokuapp.com/seven/player/add/` + this.state.gameId;
 
       fetch(url, {
         method: 'POST',
