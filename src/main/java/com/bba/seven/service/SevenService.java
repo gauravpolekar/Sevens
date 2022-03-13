@@ -8,6 +8,7 @@ import com.bba.seven.beans.GameUIBean;
 import com.bba.seven.beans.Player;
 import com.bba.seven.enums.Face;
 import com.bba.seven.enums.Suit;
+import com.bba.seven.exceptions.InvalidCardException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -15,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 @Service
 public class SevenService {
@@ -65,7 +67,7 @@ public class SevenService {
 		return null;
 	}
 
-	public void playCurrentTurn(String gameId, Player player, Card card) {
+	public void playCurrentTurn(String gameId, Player player, Card card) throws InvalidCardException {
 		Game game = games.get(gameId);
 		if (game != null) {
 			game.playCurrentTurn(player, card);

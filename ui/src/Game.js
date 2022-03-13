@@ -5,7 +5,8 @@ import CardOnTable from './CardOnTable';
 class Game extends Component {
   state = {
     cards: [],
-    cardsOnTable: {}
+    cardsOnTable: {},
+    errorMessage: ""
   };
 
   constructor(props) {
@@ -43,23 +44,43 @@ class Game extends Component {
             card : cardToPlay
             };
     let url =`http://localhost:8080/seven/playTurn/` + gameId;
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(p)
-    });
+    try {
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(p)
+      }).then((res) => {
+        if (!res.ok) {
+           res.text().then(text => { this.setState({ errorMessage: text })})
+        }
+      });
+    } catch (error) {
+      console.log("****************");
+      this.setState({ errorMessage: error });
+    }
 
   }
   render() {
     const { cards } = this.state;
+    const error = () => {
+      if (this.state.errorMessage != "") {
+        return(
+        <div className="alert alert-dark" roleName="alert">
+          {this.state.error}
+        </div>
+        )
+      }
+      return ("");
+    }
     return (
       <div class="container">
         <div class="row">
           <div className='col-sm'>
         <button onClick={this.startGame} className="btn-primary col-sm" >Start</button>
+        {error}
         </div>
         <div class="row">
         <Player />

@@ -13,6 +13,7 @@ public class Player {
 	private String name;
 	private List<Card> cards = new ArrayList<>();
 	private boolean isCurrentPlayer;
+	private boolean isPass;
 
 	public void addCard(Card card) {
 		cards.add(card);

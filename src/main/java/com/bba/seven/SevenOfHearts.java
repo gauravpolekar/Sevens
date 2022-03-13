@@ -8,14 +8,24 @@ import com.bba.seven.beans.Player;
 import com.bba.seven.enums.Face;
 import com.bba.seven.enums.GameStatus;
 import com.bba.seven.enums.Suit;
+import com.bba.seven.exceptions.InvalidCardException;
+import com.bba.seven.rules.DefaultRuleEngine;
+import com.bba.seven.rules.Facts;
+import com.bba.seven.rules.Rule;
+import com.bba.seven.rules.RuleClass;
+import com.bba.seven.rules.RuleEngine;
+import com.bba.seven.rules.sevensrule.RuleConstants;
+import org.reflections.Reflections;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.UUID;
 
 /**
@@ -31,12 +41,32 @@ public class SevenOfHearts implements Game {
 
 	private Map<Suit, Set<Card>> cardsOnTable;
 
+	private List<Rule> rules;
+	private Facts facts;
+	private RuleEngine ruleEngine;
 	public SevenOfHearts() {
 		deck = new GameDeck();
 		players = new ArrayList<>();
 		cardsOnTable = new HashMap<>();
 		status = GameStatus.READY_TO_START;
 		gameName = SevenOfHearts.class.getSimpleName() + UUID.randomUUID();
+		ruleEngine = new DefaultRuleEngine();
+		rules = getAllRules();
+		facts = new Facts();
+		facts.put(RuleConstants.FACT_CARDS_ON_TABLE, cardsOnTable);
+	}
+
+	private List<Rule> getAllRules() {
+		List<Rule> rules = new ArrayList<>();
+		try {
+			Reflections ref = new Reflections("com.bba.seven.rules.sevensrule");
+			for (Class<?> cl : ref.getTypesAnnotatedWith(RuleClass.class)) {
+				rules.add((Rule) cl.getDeclaredConstructor().newInstance());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rules;
 	}
 
 	@Override
@@ -103,6 +133,17 @@ public class SevenOfHearts implements Game {
 			players.get(currentIndex % players.size()).addCard(deck.getCards().get(currentIndex));
 			currentIndex ++;
 		}
+		players.stream().forEach(p-> Collections.sort(p.getCards()));
+	}
+
+	@Override
+	public boolean hasCardToPlay(Player nextPlayer) {
+		for(Card c: nextPlayer.getCards()) {
+			if (isValidCardToPlay(c)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private void initializeCurrentPlayer() {
@@ -113,20 +154,33 @@ public class SevenOfHearts implements Game {
 
 
 	@Override
-	public void playCurrentTurn(Player player, Card card) {
+	public void playCurrentTurn(Player player, Card card) throws InvalidCardException {
 		//Game logic
 		if (currentTurn().equals(player)) {
 			if (currentTurn().getCards().contains(card)) {
 				if (isValidCardToPlay(card)) {
 					addCardToTable(card);
+					if (checkWinner(currentTurn())) {
+						return;
+					}
 					nextTurn();
+				} else {
+					throw new InvalidCardException("Not a valid card to play");
 				}
 			}
 		}
 	}
 
+	private boolean checkWinner(Player player) {
+		if (player.getCards().isEmpty()) {
+			this.status = GameStatus.COMPLETED;
+			return true;
+		}
+		return false;
+	}
+
 	private void addCardToTable(Card card) {
-		Set<Card> faces = cardsOnTable.getOrDefault(card.getSuit(), new HashSet<>());
+		Set<Card> faces = cardsOnTable.getOrDefault(card.getSuit(), new TreeSet<>());
 		faces.add(card);
 		cardsOnTable.put(card.getSuit(), faces);
 		currentTurn().getCards().remove(card);
@@ -134,7 +188,8 @@ public class SevenOfHearts implements Game {
 
 	private boolean isValidCardToPlay(Card card) {
 		//Evaluate Game rules
-		return true;
+		facts.put(RuleConstants.FACT_CARD, card);
+		return ruleEngine.evaluate(rules, facts);
 	}
 
 	@Override

@@ -13,7 +13,7 @@ import java.util.Objects;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Card {
+public class Card implements Comparable<Card> {
 	private Face face;
 	private String unicode;
 	private Suit suit;
@@ -30,4 +30,14 @@ public class Card {
 	public int hashCode() {
 		return Objects.hash(face, suit);
 	}
+
+	@Override
+	public int compareTo(Card o) {
+		int suitCompare = this.getSuit().compareTo(o.getSuit());
+		if (suitCompare == 0) {
+			return Integer.compare(this.face.getValue(), o.face.getValue());
+		}
+		return suitCompare;
+	}
+
 }

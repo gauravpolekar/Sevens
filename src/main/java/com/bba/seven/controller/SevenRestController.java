@@ -1,20 +1,22 @@
 package com.bba.seven.controller;
 
 import com.bba.seven.beans.Card;
-import com.bba.seven.beans.Game;
 import com.bba.seven.beans.GameDeck;
 import com.bba.seven.beans.GameUIBean;
 import com.bba.seven.beans.Player;
-import com.bba.seven.enums.Face;
 import com.bba.seven.enums.Suit;
+import com.bba.seven.exceptions.InvalidCardException;
 import com.bba.seven.service.SevenService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -23,7 +25,7 @@ import java.util.Set;
 
 @RestController()
 @RequestMapping("/seven")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 public class SevenRestController {
 
 	@Autowired
@@ -66,7 +68,14 @@ public class SevenRestController {
 	}
 
 	@PostMapping("/playTurn/{gameId}")
-	public void playCurrentPlayerTurn(@PathVariable("gameId") String gameId, @RequestBody PlayTurn playTurn) {
+	public void playCurrentPlayerTurn(@PathVariable("gameId") String gameId, @RequestBody PlayTurn playTurn) throws InvalidCardException {
 		sevenService.playCurrentTurn(gameId, playTurn.getPlayer(), playTurn.getCard());
+	}
+
+
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler({ InvalidCardException.class })
+	public String handleException(Exception e) {
+		return e.getMessage();
 	}
 }
