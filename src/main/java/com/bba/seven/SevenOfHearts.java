@@ -15,6 +15,8 @@ import com.bba.seven.rules.Rule;
 import com.bba.seven.rules.RuleClass;
 import com.bba.seven.rules.RuleEngine;
 import com.bba.seven.rules.sevensrule.RuleConstants;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.reflections.Reflections;
 import org.springframework.util.CollectionUtils;
 
@@ -44,6 +46,8 @@ public class SevenOfHearts implements Game {
 	private List<Rule> rules;
 	private Facts facts;
 	private RuleEngine ruleEngine;
+	private static final Logger LOGGER = LogManager.getLogger(SevenOfHearts.class);
+
 	public SevenOfHearts() {
 		deck = new GameDeck();
 		players = new ArrayList<>();
@@ -156,6 +160,7 @@ public class SevenOfHearts implements Game {
 	@Override
 	public void playCurrentTurn(Player player, Card card) throws InvalidCardException {
 		//Game logic
+		LOGGER.info("Player " + player.getName() + " Card " + card.getSuit() + card.getFace());
 		if (currentTurn().equals(player)) {
 			if (currentTurn().getCards().contains(card)) {
 				if (isValidCardToPlay(card)) {
@@ -188,6 +193,7 @@ public class SevenOfHearts implements Game {
 
 	private boolean isValidCardToPlay(Card card) {
 		//Evaluate Game rules
+		LOGGER.info("Total rules "+ rules.size());
 		facts.put(RuleConstants.FACT_CARD, card);
 		return ruleEngine.evaluate(rules, facts);
 	}

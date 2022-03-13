@@ -23,7 +23,7 @@ public class Card implements Comparable<Card> {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		Card card = (Card) o;
-		return face == card.face && suit == card.suit;
+		return face.equals(card.face) && suit.equals(card.suit);
 	}
 
 	@Override
