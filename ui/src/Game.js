@@ -88,13 +88,13 @@ class Game extends Component {
         <div class="row">
         <hr/>
         </div>
-        <div class="row">
+        <div class="row" style={{marginBottom: '3em'}}>
         <CardOnTable/>
         </div>
-        <div class="row">
-        <hr/>
+        <div style={{backgroundColor: 'gold'}} >
+        
         </div>
-        <div class="d-flex">
+        <div class="inHandCards">
         {cards.map(card =>
           <div className={"playing-card " + card.suit} onClick={() => this.play(card)}>
             {card.unicode}

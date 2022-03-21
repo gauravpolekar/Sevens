@@ -6,25 +6,48 @@
 .playing-card{
      float: left;
      font-size:100px;
+     margin: 1em 0 0 0;
+     border-radius: 8px
 }
+
+.playing-card-table{
+     float: left;
+     font-size:100px;
+     margin: 1em 0 0 0
+}
+.playing-card:hover {
+     margin-top: 0.75em;
+     cursor: grab;
+ }
 .CLUB{
      color: black;
+     text-shadow: 2px 2px 4px black;
 }
 
 .SPADE{
      color: black;
+     text-shadow: 2px 2px 4px black;
 }
 .DIAMOND{
-     color: red;
+     color: #b51200;
+     text-shadow: 2px 2px 4px #b51200;
 }
 
 .HEART{
-     color: red;
+     color: #b51200;
+     text-shadow: 2px 2px 4px #b51200;
 }
 
-
+.inHandCards {
+     display: flex;
+     flex-wrap: wrap;
+}
 .tableRow {
      display: flex;
      letter-spacing: -5px;
-     line-height: 100px;
+     line-height: 1em;
+}
+
+.tableRow:hover {
+     cursor: auto !important;
 }

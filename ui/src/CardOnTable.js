@@ -41,12 +41,12 @@ class CardOnTable extends Component {
               return (
                 <div className='tableRow'> 
                   {this.state.cards[card].map(c =>
-                  <div className={"playing-card " + card} key={c.face}>
+                  <div className={"playing-card-table " + card} key={c.face}>
                     {c.unicode}
                   </div>
                 )
                 
-                }<hr/>
+                }
                 </div>
               );
             }
