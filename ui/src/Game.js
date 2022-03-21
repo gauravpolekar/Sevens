@@ -91,7 +91,7 @@ class Game extends Component {
         <div class="row" style={{marginBottom: '3em'}}>
         <CardOnTable/>
         </div>
-        <div style={{backgroundColor: 'gold'}} >
+        <div style={{backgroundColor: 'black', height:'3px'}} >
         
         </div>
         <div class="inHandCards">

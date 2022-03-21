@@ -35,14 +35,23 @@ class Player extends Component {
     if (this.state.players === undefined || this.state.players.length === 0) {
       return (<></>);
     }
+    const activePlayer = {
+      backgroundColor : '#2b8045',
+      color : 'white',
+      fontWeight : 'bold'
+    }
+    const normalPlayer = {
+      backgroundColor : 'white',
+      color : 'black'
+        }
     return (
       <div class="container">
         <div class="row">
      <div class="card">
         <ul class="list-group list-group-flush">
           {this.state.players.map(player =>
-          <li class="list-group-item">
-            {player.name} { player.currentPlayer ? "<-": ""}
+          <li class="list-group-item" style={player.currentPlayer ? activePlayer: normalPlayer}   >
+            {player.name} 
           </li>
           )}
         </ul>
