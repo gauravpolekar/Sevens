@@ -79,20 +79,14 @@ class Game extends Component {
       <div class="container">
         <div class="row">
           <div className='col-sm'>
-        <button onClick={this.startGame} className="btn-primary col-sm" >Start</button>
+        <button onClick={this.startGame} className="playButton" >Start</button>
         {error}
         </div>
         <div class="row">
         <Player />
         </div>
-        <div class="row">
-        <hr/>
-        </div>
-        <div class="row" style={{marginBottom: '3em'}}>
+        <div class="row" style={{border:'3px solid black',padding: '8px'}}>
         <CardOnTable/>
-        </div>
-        <div style={{backgroundColor: 'black', height:'3px'}} >
-        
         </div>
         <div class="inHandCards">
         {cards.map(card =>

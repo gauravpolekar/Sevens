@@ -36,25 +36,27 @@ class Player extends Component {
       return (<></>);
     }
     const activePlayer = {
-      backgroundColor : '#2b8045',
+      backgroundColor : '#b51200',
       color : 'white',
-      fontWeight : 'bold'
+      fontWeight : 'bold',
+      width:'100%',
+      textAlign:'center'
+
     }
     const normalPlayer = {
       backgroundColor : 'white',
-      color : 'black'
+      color : 'black',
+      textAlign:'center'
         }
     return (
-      <div class="container">
+      <div>
         <div class="row">
      <div class="card">
-        <ul class="list-group list-group-flush">
           {this.state.players.map(player =>
-          <li class="list-group-item" style={player.currentPlayer ? activePlayer: normalPlayer}   >
+          <div style={player.currentPlayer ? activePlayer: normalPlayer}   >
             {player.name} 
-          </li>
+          </div>
           )}
-        </ul>
       </div>
       </div>
       </div>

@@ -60,41 +60,36 @@ class Home extends Component {
 
 
   render() {
-    if (Object.keys(this.state.player).length === 0 || this.state.player.name == null || this.state.player.name == 'null') {
-      return (
-        <div class="container">
-          <h4>Start Game</h4>
+    return (
+        <div>
+          <h2 className='startGame'>Badam Sat / 7 of ❤️</h2>
           
-          
+          <div className="startGameBox">
           <form onSubmit={this.addPlayer}>
-          <div class="row">
-          <div class="col-sm">
-            <label className="form-label">Player name :</label> 
-            </div>
-            <div class="col-sm">
-              <input className="form-control" name="playerName" />
+          <div className="row">
+            <div className='welcomeBoard'>Welcome! Start a New Game </div>
+            <div>
+            <div style={{float:"left"}}>
+              <input className="form-control" name="playerName" placeholder='Player name'/>
               </div>
-              <div class="col-sm">
-            <button type='submit' className="btn-primary col-sm">Play</button>
+              <div style={{float:"left"}}>
+            <button type='submit' className='playButton'>Play</button>
             </div>
             </div>
+            <div>
+              <br/>
+              <br/>
+            <div className='shareLink'>Share this link with your friends to play this game.</div>
+            <input className='copyUrl' value={window.location.href}/>
+            </div>
+            </div>
+            
           </form>
-          
+          </div>
           </div>
           
         
       );
-    } else {
-      return (
-        <div className="App">
-        
-          <p>Player name: {this.state.player.name} </p>
-          <form onSubmit={this.addPlayer}>
-            <button type='submit'>Play</button>
-          </form>
-        </div>
-      );
-    }
   }
 }
 export default Home;

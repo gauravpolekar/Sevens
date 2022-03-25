@@ -1,41 +1,97 @@
+body{
+     background-color: #2b8045 ;
 
+}
 .line-break {
      width: 100%;
 }
-
-.playing-card{
-     float: left;
-     font-size:100px;
-     margin: 1em 0 0 0;
-     border-radius: 8px
+.row {
+     padding-left: 20px;
+     padding-right: 20px;
+     width: 95%;
 }
-
-.playing-card-table{
-     float: left;
-     font-size:100px;
-     margin: 1em 0 0 0
+.playing-card{
+    background-size: 90% 90%;
+    background-repeat: no-repeat;
+    background-position: center 110%;
+    font-size: 100px;
+    margin: 0.2em -0.4em -2px 1px;
+    border-radius: 8px;
+    line-height: 110px;
+    background-color: white;
+    cursor: grab;
 }
 .playing-card:hover {
-     margin-top: 0.75em;
-     cursor: grab;
- }
+     transform: translate(0, -10px);
+     transition-duration: 0.5s;
+   }
+.playing-card-table{
+     background-size: 90% 90%;
+     margin: 0.2em -0.4em 7px 1px;
+     background-repeat: no-repeat;
+     background-position: center 110%;
+     font-size: 100px;
+     border-radius: 8px;
+     line-height: 110px;
+     background-color: white;
+     cursor: auto;
+     width: 65px;
+     margin-top: 0px;
+}
+
 .CLUB{
      color: black;
-     text-shadow: 2px 2px 4px black;
+     position: relative;
+    box-shadow: rgb(49 41 40) 0px 0px 10px;
+    padding: -9.75em 96.5em;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(215, 209, 215);
+    border-image: initial;
+    border-radius: -1px;
+    background: rgb(242, 242, 242);
+    transition: all 0.25s ease 0s;
 }
 
 .SPADE{
      color: black;
-     text-shadow: 2px 2px 4px black;
+    position: relative;
+    box-shadow: rgb(49 41 40) 0px 0px 10px;
+    padding: -9.75em 96.5em;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(215, 209, 215);
+    border-image: initial;
+    border-radius: -1px;
+    background: rgb(242, 242, 242);
+    transition: all 0.25s ease 0s;
 }
 .DIAMOND{
      color: #b51200;
-     text-shadow: 2px 2px 4px #b51200;
+     position: relative;
+    box-shadow: rgb(49 41 40) 0px 0px 10px;
+    padding: -9.75em 96.5em;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(215, 209, 215);
+    border-image: initial;
+    border-radius: -1px;
+    background: rgb(242, 242, 242);
+    transition: all 0.25s ease 0s;
 }
 
 .HEART{
      color: #b51200;
-     text-shadow: 2px 2px 4px #b51200;
+     position: relative;
+    box-shadow: rgb(49 41 40) 0px 0px 10px;
+    padding: -9.75em 96.5em;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(215, 209, 215);
+    border-image: initial;
+    border-radius: -1px;
+    background: rgb(242, 242, 242);
+    transition: all 0.25s ease 0s;
 }
 
 .inHandCards {
@@ -51,3 +107,64 @@
 .tableRow:hover {
      cursor: auto !important;
 }
+.list-group-item{
+     list-style-type:none;
+     border-radius: 8px;
+     text-align: center;
+     width: 100%;
+
+}
+.copyUrl{
+     color: rgb(126, 3, 3);
+     width: 100%;
+}
+.startGameBox {
+     width: 96%;
+     max-width: 1000px;
+     margin: 0.25em auto;
+     padding: 0.5em;
+     border: 1px solid #151211;
+     -moz-border-radius: 10px;
+     -webkit-border-radius: 10px;
+     border-radius: 10px;
+     -moz-box-shadow: #1f1a19 0px 0px 25px inset;
+     -webkit-box-shadow: #1f1a19 0px 0px 25px inset;
+     box-shadow: #1f1a19 0px 0px 25px inset;
+     border-top: 1px solid #4d403f;
+    border-bottom: 1px solid #151211;
+    background-color: dimgray;
+ }
+ .startGame{
+     font-family: 'Stint Ultra Expanded', cursive;
+     color: #034c23;
+     text-align: center;
+     text-shadow: 2px 2px 2px black;
+     line-height: 1.2;
+     font-size: 63px;
+     font-weight: bolder;
+ }
+ .playButton{
+     color: #e3dfe3;
+     text-shadow: black 1px 1px 0;
+     background: #0e536e;
+     border: 1px solid #083141;
+ }
+ .playButton:hover{
+     color: #e3dfe3;
+     text-shadow: black 1px 1px 0;
+     border: 1px solid #b51200;
+     background: #b51200;
+ }
+ .shareLink{
+    font-family: fantasy;
+    font-style: italic;
+    font-size: larger;
+    color: darkred;
+ }
+ .welcomeBoard{
+     text-align: center;
+     font-size: 29px;
+     color: darkred;
+     font-weight: bold;
+     font-family: cursive;
+ }
